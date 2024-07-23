@@ -5,9 +5,6 @@ const pool = mysql.createPool({
   user: "u475816193_jess",
   password: "v4P7wMJoZ#",
   database: "u475816193_bdonlywater2",
-  waitForConnections: true,
-  connectionLimit: 10, 
-  queueLimit: 0
 });
 
 pool.getConnection((err, connection) => {
