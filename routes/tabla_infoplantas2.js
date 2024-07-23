@@ -1,17 +1,17 @@
-const express = require("express");
-const Router = express.Router();
-const mysqlConexion = require("../conexion");
+const express = require('express');
+const router = express.Router();
+const pool = require('../conexion'); 
 
-Router.get("/", (req, res) => {
-    
-    mysqlConexion.query("SELECT * from infoplantas2", (err, rows) => {
-        if (err) {
-            console.error("Error en la consulta:", err);
-            res.status(500).send("Error en la consulta a la base de datos");
-        } else {
-            res.json(rows);
-        }
-    });
+
+router.get('/', (req, res) => {
+  pool.query('SELECT * FROM infoplantas2', (error, results) => {
+    if (error) {
+      console.error('Error en la consulta:', error);
+      return res.status(500).json({ success: false, message: 'Error en el servidor' });
+    }
+
+    res.status(200).json({ success: true, data: results });
+  });
 });
 
-module.exports = Router; 
+module.exports = router;
