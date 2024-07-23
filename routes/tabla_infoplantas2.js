@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../conexion'); 
 
-
 router.get('/', (req, res) => {
   pool.query('SELECT * FROM infoplantas2', (error, results) => {
     if (error) {
